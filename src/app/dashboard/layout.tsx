@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
+import styles from "../dashboard/dashboard.module.css";
 
 const DashboardLayout = ({
   children,
@@ -7,11 +8,11 @@ const DashboardLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.menu}>
         <Sidebar />
       </div>
-      <div>
+      <div className={styles.content}>
         <Navbar />
         {children}
       </div>
