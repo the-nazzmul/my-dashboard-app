@@ -1,5 +1,5 @@
-import Navbar from "@/components/navbar/Navbar";
-import Sidebar from "@/components/sidebar/Sidebar";
+import Navbar from "@/components/dashboard/navbar/Navbar";
+import Sidebar from "@/components/dashboard/sidebar/Sidebar";
 import styles from "../dashboard/dashboard.module.css";
 
 const DashboardLayout = ({
