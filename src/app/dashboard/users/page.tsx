@@ -2,8 +2,14 @@ import Search from "@/components/dashboard/search/Search";
 import styles from "./Users.module.css";
 import Link from "next/link";
 import Pagination from "@/components/dashboard/pagination/Pagination";
+import { fetchUsers } from "@/app/lib/data";
+import Image from "next/image";
 
-const UsersPage = () => {
+const UsersPage = async ({ searchParams }: { searchParams: any }) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const { count, users } = await fetchUsers(q, page);
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -24,7 +30,7 @@ const UsersPage = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {users.map((user) => (
+          {users.map((user) => (
             <tr key={user.id}>
               <td>
                 <div className={styles.user}>
@@ -49,7 +55,8 @@ const UsersPage = () => {
                       View
                     </button>
                   </Link>
-                  <form action={deleteUser}>
+                  {/* TODO: Form action */}
+                  <form>
                     <input type="hidden" name="id" value={user.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
@@ -58,10 +65,10 @@ const UsersPage = () => {
                 </div>
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
   );
 };
